@@ -1,0 +1,56 @@
+#!/usr/bin/expect -f
+# sshaws hostname
+
+
+set passfile [open "~/.secrets/logindata" r]
+gets $passfile name
+gets $passfile pass
+close $passfile
+
+set homepath $env(HOME)
+
+set keyfile [open "~/.ssh/id_ngs.pub" r]
+gets $keyfile key
+close $keyfile
+
+set server [lrange $argv 0 0]
+
+# SSH to server to add key - the authorized key is already
+# registered on the bastion so no need for a password prompt
+# for the jump host.
+spawn ssh -J bastion.admin.nextgatecloud.com $server
+
+# Fill in password for destination server
+expect "*?assword:*"
+send "$pass\r"
+expect "$ "
+
+# add key to authorized keys file and exit
+set dirname ~/.ssh
+send "mkdir -p $dirname\r"
+expect "$ "
+send "echo $key > ~/.ssh/authorized_keys\r"
+expect "$ "
+send "history -c\r"
+expect "$ "
+send "exit\r"
+wait
+
+# Copy the latest copy of .vimrc to the destination server
+spawn scp -J bastion.admin.nextgatecloud.com $homepath/.vimrc $server:/home/$name/
+wait
+
+spawn ssh -J bastion.admin.nextgatecloud.com $server
+expect "$ "
+# Add an alias to my personal bash profile
+send "echo \"alias sungs='sudo su -m ngs'\" >> .profile\r"
+expect "$ "
+# Set the appropriate permissions for .vimrc to enable it to be read
+send "chmod 644 .vimrc\r"
+expect "$ "
+# Enable personal bash history to be written to by ngs user
+send "chmod 666 .bash_history\r"
+expect "$ "
+send "exit\r"
+
+exit

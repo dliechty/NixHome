@@ -1,0 +1,16 @@
+_sshaws()
+{
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    opts=$(cat ~/.ssh/aws_hosts | sed -e 's///g')
+
+    COMPREPLY=( $(compgen -W "$opts" -- ${cur}) )
+    return 0
+}
+complete -F _sshaws sshaws
+complete -F _sshaws ssha
+complete -F _sshaws sshap
+complete -F _sshaws uvimrc
+complete -F _sshaws register_node

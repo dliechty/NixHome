@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo "Updating .vimrc on $1"
+
+scp -J bastion.admin.nextgatecloud.com ~/.vimrc $1:~/
+ssh -J bastion.admin.nextgatecloud.com $1 'chmod 644 .vimrc'

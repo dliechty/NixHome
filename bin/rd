@@ -1,0 +1,28 @@
+#! /bin/sh
+
+USAGE="Usage: rd user host [-multiwindow|multiwindow]"
+
+if [ $# -ne 2 ] && [ $# -ne 3 ]
+then
+        echo $USAGE
+		exit
+fi
+
+if [ $# -eq 2 ]
+then
+	run XWin -screen 0 1850 1200
+	DISPLAY=localhost:0 
+	export DISPLAY
+	ssh -Y -l $1 $2 gnome-session
+else
+	if [ $3 = "-multiwindow" ] || [ $3 = "multiwindow" ]
+	then
+		run XWin -multiwindow
+		DISPLAY=localhost:0.0
+		export DISPLAY
+		ssh -Y -l $1 $2 qbittorrent
+	else
+		echo $USAGE
+		exit
+	fi
+fi

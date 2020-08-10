@@ -1,0 +1,36 @@
+#!/usr/bin/expect -f
+# sshaws hostname
+
+set passfile [open "~/.secrets/logindata" r]
+gets $passfile name
+gets $passfile pass
+close $passfile
+
+set server [lrange $argv 0 0]
+
+# spawn ssh session to bastion. Port forward RDP port from the destination server in
+# case it is an analysis box with a RDP server.
+spawn ssh bastion.admin.nextgatecloud.com
+
+#expect "*?assword:*"
+#send "$pass\r"
+
+#expect "Passcode or option (1-3):"
+#send "1\r"
+
+expect "$ "
+send "ssh $name@$server\r"
+
+expect "*?assword:*"
+send "$pass\r"
+expect "$ "
+
+# switch to ngs user and navigate to /var/nextgate
+send "sudo su - ngs\r"
+expect "*?assword*:"
+send "$pass\r"
+expect "$ "
+send "cd /var/nextgate\r"
+expect "$ "
+send "clear\r"
+interact
