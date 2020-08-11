@@ -187,6 +187,16 @@ alias ll='ls -al'                              # long list
 alias la='ls -A'                              # all but . and ..
 alias l='ls -CF'                              #
 
+# if .bash_local exist, source it.
+# .bash_local can be used to set machine-specific settings
+# that isn't synced to Git
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bash_local" ]; then
+    . "$HOME/.bash_local"
+    fi
+fi
+
 # User defined aliases
 
 alias sshs='ssh qwertyshoe.com'
@@ -200,8 +210,6 @@ alias tmux="tmux -2"
 
 # Some example functions
 # function settitle() { echo -ne "\e]2;$@\a\e]1;$@\a"; }
-
-#export SCREENDIR=/home/david.bak/.screen
 
 # Function to update vimrc and then connect to aws server.
 # Auto completion provided by function in .bash_completion
