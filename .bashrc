@@ -218,5 +218,3 @@ sshaws() {
     ssha $1
 }
 
-# update /etc/hosts with host IP address of windows box
-#cat /etc/hosts | grep 172.; test $? -eq 0 && $1 || echo -e "$(grep nameserver /etc/resolv.conf | awk '{print $2, " host"}')\n$(cat /etc/hosts)" | sudo tee /etc/hosts
