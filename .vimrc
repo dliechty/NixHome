@@ -191,10 +191,6 @@ if hostname() == "gamer1" || hostname() == "server1" || hostname() == "NGS65-LAP
     let g:netrw_banner = 0
     let g:netrw_winsize = 25
 
-    nnoremap <leader>h :wincmd h<CR>
-    nnoremap <leader>j :wincmd j<CR>
-    nnoremap <leader>k :wincmd k<CR>
-    nnoremap <leader>l :wincmd l<CR>
     nnoremap <leader>u :UndotreeShow<CR>
     nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 
