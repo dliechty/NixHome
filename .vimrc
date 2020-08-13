@@ -153,9 +153,15 @@ let mapleader = " "
 "Remove all trailing whitespace in file by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
-" add settings specific to home servers here
+" check if .valid_hosts file exists. If it does, read in list of valid
+" hosts to initialize plugins and plugin-specific settings.
+let validhosts = []
 let hosts_file = $HOME . '/.vim/.valid_hosts'
-let validhosts = readfile(hosts_file)
+if !empty(glob(hosts_file))
+    let validhosts = readfile(hosts_file)
+endif
+
+" add settings specific to home servers here
 if index(validhosts, hostname()) >= 0
 
     " Specify a directory for plugins for plugged plugin
