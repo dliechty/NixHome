@@ -14,4 +14,4 @@
     1. From your home directory, run: `./.vim/plugged/YouCompleteMe/install.py`
 * This setup uses **powerline**. Here is a reference for how to install it on WSL (on Windows 10): [Powerline Install](https://devpro.media/install-powerline-windows)
 * Requires Python 3 as a dependency
-* Some vim setting are server dependent... for example, all plugins are only initialized for a specific set of hostnames that must be defined.
+* Some vim setting are server dependent... for example, all plugins are only initialized for a specific set of hostnames that must be defined. The list of valid servers are defined in `~/.vim/.valid_hosts`.
