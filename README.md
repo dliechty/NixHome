@@ -1,5 +1,5 @@
 # NixHome
- Manage various dotfiles and home dir scripts
+ Manage various dotfiles and home dir scripts. Primarily contains settings for bash, vim, and tmux.
 
 ## Notes
 
@@ -13,3 +13,5 @@
     1. Make sure cmake and python headers are installed by running: `sudo apt install cmake python3-dev`
     1. From your home directory, run: `./.vim/plugged/YouCompleteMe/install.py`
 * This setup uses **powerline**. Here is a reference for how to install it on WSL (on Windows 10): [Powerline Install](https://devpro.media/install-powerline-windows)
+* Requires Python 3 as a dependency
+* Some vim setting are server dependent... for example, all plugins are only initialized for a specific set of hostnames that must be defined.
