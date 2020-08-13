@@ -92,6 +92,9 @@ shopt -s checkwinsize
 # export PROMPT_COMMAND="history -a"
 
 
+export TERM=xterm-256color
+alias tmux="tmux -2"
+
 # Always start tmux on a new session
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux new-session -A -s main
@@ -141,9 +144,6 @@ fi
 
 alias sshs='ssh qwertyshoe.com'
 alias sshb='ssh bastion.admin.nextgatecloud.com'
-
-export TERM=xterm-256color
-alias tmux="tmux -2"
 
 # Functions
 # #########
