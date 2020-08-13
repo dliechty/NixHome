@@ -158,6 +158,9 @@ sshaws() {
     ssha $1
 }
 
+# Include jumphost in scp command for aws resource
+alias scpaws='scp -J bastion.admin.nextgatecloud.com'
+
 # Powerline configuration
 if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
     powerline-daemon -q

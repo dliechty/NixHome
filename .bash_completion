@@ -14,3 +14,5 @@ complete -F _sshaws ssha
 complete -F _sshaws sshap
 complete -F _sshaws uvimrc
 complete -F _sshaws register_node
+
+complete -o nospace -F _scp scpaws
