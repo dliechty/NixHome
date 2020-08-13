@@ -12,3 +12,4 @@
     1. Open vim and run `:PlugInstall`
     1. Make sure cmake and python headers are installed by running: `sudo apt install cmake python3-dev`
     1. From your home directory, run: `./.vim/plugged/YouCompleteMe/install.py`
+* This setup uses **powerline**. Here is a reference for how to install it on WSL (on Windows 10): [Powerline Install](https://devpro.media/install-powerline-windows)

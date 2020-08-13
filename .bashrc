@@ -52,6 +52,7 @@ unset TEMP
 # for example, cd /vr/lgo/apaache would find /var/log/apache
 # shopt -s cdspell
 
+# Check window buffer size when resizing window
 shopt -s checkwinsize
 
 # Completion options
@@ -90,67 +91,6 @@ shopt -s checkwinsize
 # Whenever displaying the prompt, write the previous line to disk
 # export PROMPT_COMMAND="history -a"
 
-## Colors?  Used for the prompt.
-#Regular text color
-BLACK='\[\e[0;30m\]'
-#Bold text color
-BBLACK='\[\e[1;30m\]'
-#background color
-BGBLACK='\[\e[40m\]'
-RED='\[\e[0;31m\]'
-BRED='\[\e[1;31m\]'
-BGRED='\[\e[41m\]'
-GREEN='\[\e[0;32m\]'
-BGREEN='\[\e[1;32m\]'
-BGGREEN='\[\e[1;32m\]'
-YELLOW='\[\e[0;33m\]'
-BYELLOW='\[\e[1;33m\]'
-BGYELLOW='\[\e[1;33m\]'
-BLUE='\[\e[0;34m\]'
-BBLUE='\[\e[1;34m\]'
-BGBLUE='\[\e[1;34m\]'
-MAGENTA='\[\e[0;35m\]'
-BMAGENTA='\[\e[1;35m\]'
-BGMAGENTA='\[\e[1;35m\]'
-CYAN='\[\e[0;36m\]'
-BCYAN='\[\e[1;36m\]'
-BGCYAN='\[\e[1;36m\]'
-WHITE='\[\e[0;37m\]'
-BWHITE='\[\e[1;37m\]'
-BGWHITE='\[\e[1;37m\]'
-GRAY='\[\e[1;30m\]'
-LGRAY='\[\e[0;37m\]'
-
-PROMPT_COMMAND=smile_prompt
-
-function smile_prompt
-{
-if [ "$?" -eq "0" ]
-then
-#smiley
-SC="${GREEN}:)"
-else
-#frowney
-SC="${RED}:("
-fi
-if [ $UID -eq 0 ]
-then
-#root user color
-UC="${RED}"
-else
-#normal user color
-UC="${LGRAY}"
-fi
-#hostname color
-HC="${BCYAN}"
-#time color
-TC="${BMAGENTA}"
-#regular color
-RC="${BGREEN}"
-#default color
-DF='\[\e[0m\]'
-PS1="${DF}|${TC}\t${DF}|${UC}\u${DF}@${HC}\h ${RC}[\W] ${SC}${DF} "
-}
 
 # Always start tmux on a new session
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
@@ -218,3 +158,10 @@ sshaws() {
     ssha $1
 }
 
+# Powerline configuration
+if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
+    powerline-daemon -q
+    POWERLINE_BASH_CONTINUATION=1
+    POWERLINE_BASH_SELECT=1
+    source /usr/share/powerline/bindings/bash/powerline.sh
+fi
