@@ -1,5 +1,5 @@
 # NixHome
- Manage various dotfiles and home dir scripts. Primarily contains settings for bash, vim, and tmux.
+ Manage various dotfiles and home dir scripts. Primarily contains settings for bash, vim, and tmux, but also contains some expect scripting used to log into AWS resources.
 
 ## Notes
 
