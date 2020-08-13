@@ -154,7 +154,9 @@ let mapleader = " "
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 " add settings specific to home servers here
-if hostname() == "gamer1" || hostname() == "server1" || hostname() == "NGS65-LAPTOP"
+let hosts_file = $HOME . '/.vim/.valid_hosts'
+let validhosts = readfile(hosts_file)
+if index(validhosts, hostname()) >= 0
 
     " Specify a directory for plugins for plugged plugin
     " Avoid using standard Vim directory names like 'plugin'
