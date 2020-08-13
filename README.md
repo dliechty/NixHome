@@ -15,5 +15,5 @@
 * This setup uses **powerline**. Here is a reference for how to install it on WSL (on Windows 10): [Powerline Install](https://devpro.media/install-powerline-windows)
 * Requires Python 3 as a dependency
 * Some vim setting are server dependent... for example, all plugins are only initialized for a specific set of hostnames that must be defined. The list of valid servers are defined in `~/.vim/.valid_hosts`.
-* The aws scripts in ~/bin rely on `expect`. To install, just run `sudo apt install expect`.
+* The aws scripts in `~/bin` rely on `expect`. To install, just run `sudo apt install expect`.
     * Additionally, these scripts expect credentials to be found at `~/.secrets/logindata`. The file should contain two lines- the first line with your username and the second line with your password.
