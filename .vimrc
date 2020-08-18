@@ -186,7 +186,7 @@ if index(validhosts, hostname()) >= 0
     " CtrlP options
     "
     " Set additional root project marker for maven projects
-    let g:ctrlp_root_markers = ['dist']
+    let g:ctrlp_root_markers = ['pom.xml']
     " disable ctrlp caching
     let g:ctrlp_use_caching = 0
     " disable max files setting
