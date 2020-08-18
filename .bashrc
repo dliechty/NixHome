@@ -173,3 +173,7 @@ fi
 cd() {
     builtin cd "$@" && ll
 }
+
+if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
+    alias mvn='cmd.exe /c mvn.cmd'
+fi
