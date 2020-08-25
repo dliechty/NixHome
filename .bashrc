@@ -165,6 +165,7 @@ cd() {
     builtin cd "$@" && ll
 }
 
+# Add bash settings specific to WSL (and not cygwin or some other bash environment)
 if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     # alias mvn to the windows executable to use windows env variables and really slow
     # disk IO
@@ -177,4 +178,7 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
       exec tmux new-session -A -s main
     fi
+
+    # update /etc/hosts with host IP address of windows box
+    cat /etc/hosts | grep 172. > /dev/null; test $? -eq 0 && $1 || echo -e "$(grep nameserver /etc/resolv.conf | awk '{print $2, " host"}')\n$(cat /etc/hosts)" | sudo tee /etc/hosts
 fi
