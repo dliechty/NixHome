@@ -206,9 +206,13 @@ if index(validhosts, hostname()) >= 0
     colorscheme molokai
 
     " Configure powerline
-    python3 from powerline.vim import setup as powerline_setup
-    python3 powerline_setup()
-    python3 del powerline_setup
+    python3 import importlib
+    python3 exists = importlib.util.find_spec("powerline.vim") is not None
+    python3 if exists: from powerline.vim import setup as powerline_setup
+    python3 if exists: powerline_setup()
+    python3 if exists: del powerline_setup
+    python3 del exists
+    python3 del importlib
 
     set laststatus=2
 
