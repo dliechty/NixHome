@@ -91,15 +91,6 @@ shopt -s checkwinsize
 # Whenever displaying the prompt, write the previous line to disk
 # export PROMPT_COMMAND="history -a"
 
-
-export TERM=xterm-256color
-alias tmux="tmux -2"
-
-# Always start tmux on a new session
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux new-session -A -s main
-fi
-
 # Aliases
 # #######
 
@@ -175,5 +166,15 @@ cd() {
 }
 
 if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
+    # alias mvn to the windows executable to use windows env variables and really slow
+    # disk IO
     alias mvn='cmd.exe /c mvn.cmd'
+
+    export TERM=xterm-256color
+    alias tmux="tmux -2"
+
+    # For WSL sessions always start tmux on a new session
+    if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+      exec tmux new-session -A -s main
+    fi
 fi
