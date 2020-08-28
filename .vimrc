@@ -44,6 +44,9 @@ set backspace=indent,eol,start
 " for more information on this.
 set hidden
 
+" Enable spellcheck
+set spell
+
 " This setting makes search case-insensitive when all characters in the string
 " being searched are lowercase. However, the search becomes case-sensitive if
 " it contains any capital letters. This makes searching more convenient.
