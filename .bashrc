@@ -165,6 +165,20 @@ cd() {
     builtin cd "$@" && ll
 }
 
+update_hosts() {
+    # Test if hosts file contains IP for windows host
+    (cat /etc/hosts | grep 172. > /dev/null)
+    local out=$?
+    if [ "$out" -ne "0" ]; then
+        # update /etc/hosts with host IP address of windows box
+        echo -e "$(grep nameserver /etc/resolv.conf | awk '{print $2, " host"}')\n$(cat /etc/hosts)" | sudo tee /etc/hosts
+
+        # Comment out the entry for 127.0.1.1 and add hostname as alias for localhost
+        sudo sed -i 's/127.0.1.1/#127.0.1.1/g' /etc/hosts
+        sudo sed -i "s/localhost$/localhost $(hostname)/g" /etc/hosts
+    fi
+}
+
 # Add bash settings specific to WSL (and not cygwin or some other bash environment)
 if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     # alias mvn to the windows executable to use windows env variables and really slow
@@ -179,6 +193,6 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
       exec tmux new-session -A -s main
     fi
 
-    # update /etc/hosts with host IP address of windows box
-    cat /etc/hosts | grep 172. > /dev/null; test $? -eq 0 && $1 || echo -e "$(grep nameserver /etc/resolv.conf | awk '{print $2, " host"}')\n$(cat /etc/hosts)" | sudo tee /etc/hosts
+    update_hosts
 fi
+
