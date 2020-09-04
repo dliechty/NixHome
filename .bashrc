@@ -136,6 +136,7 @@ fi
 alias sshs='ssh qwertyshoe.com'
 alias sshb='ssh bastion.admin.nextgatecloud.com'
 
+
 # Functions
 # #########
 
@@ -184,6 +185,8 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     # alias mvn to the windows executable to use windows env variables and really slow
     # disk IO
     alias mvn='cmd.exe /c mvn.cmd'
+    # alias svn to the exe
+    alias svn='svn.exe'
 
     export TERM=xterm-256color
     alias tmux="tmux -2"
