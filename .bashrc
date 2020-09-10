@@ -167,8 +167,9 @@ cd() {
 }
 
 update_hosts() {
-    # Test if hosts file contains IP for windows host
-    (cat /etc/hosts | grep 172. > /dev/null)
+    # Test if hosts file contains IP for windows host on first line. Can start with either
+    # 172. or 192.
+    (head -1 /etc/hosts | grep '172.\|192.' > /dev/null)
     local out=$?
     if [ "$out" -ne "0" ]; then
         # Comment out the entry for 127.0.1.1 and add hostname as alias for localhost
