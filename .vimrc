@@ -153,6 +153,16 @@ let mapleader = " "
 "Remove all trailing whitespace in file by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
+" test if running inside WSL and apply WSL specific settings
+let uname = substitute(system('uname'),'\n','','')
+if uname == 'Linux'
+    let lines = readfile("/proc/version")
+    if lines[0] =~ "Microsoft"
+        " when yanking text copy to windows clipboard
+        autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' |  clip.exe')
+    endif
+endif
+
 " check if .valid_hosts file exists. If it does, read in list of valid
 " hosts to initialize plugins and plugin-specific settings.
 let validhosts = []
