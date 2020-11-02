@@ -197,6 +197,9 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
       exec tmux new-session -A -s main
     fi
 
+    # Start cron automatically to run any scheduled jobs
+    sudo cron
+
     update_hosts
 fi
 
