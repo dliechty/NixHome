@@ -138,6 +138,8 @@ fi
 alias sshs='ssh qwertyshoe.com'
 alias sshb='ssh bastion.admin.nextgatecloud.com'
 
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
 
 # Functions
 # #########
