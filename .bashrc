@@ -204,7 +204,7 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     # Test to see if the cron service is already running
     if ! service cron status > /dev/null; then
         # Start cron automatically to run any scheduled jobs
-        sudo cron
+        sudo /etc/init.d/cron start
     fi
 
     update_hosts
