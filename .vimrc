@@ -163,6 +163,10 @@ if uname == 'Linux'
     endif
 endif
 
+if uname =~ 'CYGWIN.*'
+    set pythonthreedll=/usr/bin/libpython3.8.dll
+endif
+
 " check if .valid_hosts file exists. If it does, read in list of valid
 " hosts to initialize plugins and plugin-specific settings.
 let validhosts = []
