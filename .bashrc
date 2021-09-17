@@ -157,13 +157,6 @@ sshaws() {
 # Include jumphost in scp command for aws resource
 alias scpaws='scp -J bastion.admin.nextgatecloud.com'
 
-# Powerline configuration
-if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
-    powerline-daemon -q
-    POWERLINE_BASH_CONTINUATION=1
-    POWERLINE_BASH_SELECT=1
-    source /usr/share/powerline/bindings/bash/powerline.sh
-fi
 
 # Run ls right after using cd
 cd() {
@@ -187,6 +180,15 @@ update_hosts() {
 
 # Add bash settings specific to WSL (and not cygwin or some other bash environment)
 if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
+
+    # Powerline configuration
+    if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
+        powerline-daemon -q
+        POWERLINE_BASH_CONTINUATION=1
+        POWERLINE_BASH_SELECT=1
+        source /usr/share/powerline/bindings/bash/powerline.sh
+    fi
+
     # alias mvn to the windows executable to use windows env variables and really slow
     # disk IO
     alias mvn='cmd.exe /c mvn.cmd'
