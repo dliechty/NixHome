@@ -160,7 +160,7 @@ alias scpaws='scp -J bastion.admin.nextgatecloud.com'
 
 # Run ls right after using cd
 cd() {
-    builtin cd "$@" && ll
+    builtin cd "$@" && ls -al
 }
 
 update_hosts() {
