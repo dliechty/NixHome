@@ -160,7 +160,7 @@ alias scpaws='scp -J bastion.admin.nextgatecloud.com'
 
 # Run ls right after using cd
 cd() {
-    builtin cd "$@" && ll
+    builtin cd "$@" && ls -al
 }
 
 update_hosts() {
@@ -175,6 +175,12 @@ update_hosts() {
 
         # update with host IP address of windows box
         echo -e "$(grep nameserver /etc/resolv.conf | awk '{print $2, " host"}')\n$(cat /etc/hosts)" | sudo tee /etc/hosts
+    fi
+}
+
+start_tmux() {
+    if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+      exec tmux new-session -A -s main
     fi
 }
 
@@ -198,11 +204,6 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     export TERM=xterm-256color
     alias tmux="tmux -2"
 
-    # For WSL sessions always start tmux on a new session
-    if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-      exec tmux new-session -A -s main
-    fi
-
     # Test to see if the cron service is already running
     if ! service cron status > /dev/null; then
         # Start cron automatically to run any scheduled jobs
@@ -211,4 +212,7 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
 
     update_hosts
 fi
+
+# start tmux if it exists
+start_tmux
 
