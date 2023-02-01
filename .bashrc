@@ -200,6 +200,8 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     alias mvn='cmd.exe /c mvn.cmd'
     # alias svn to the exe
     alias svn='svn.exe'
+    # alias git to the exe
+    alias git='git.exe'
 
     export TERM=xterm-256color
     alias tmux="tmux -2"
