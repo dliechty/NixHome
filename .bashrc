@@ -184,6 +184,20 @@ start_tmux() {
     fi
 }
 
+mvn_changed_modules() {
+    [ -z "$1" ] && echo "Expected command : mvn_changed_modules (install/build/clean or any maven command)" && exit 0
+
+    modules=$(git status | grep -E "modified:|deleted:|added:" | awk '{print $2}' | cut -f1 -d "/" | sort | uniq | paste -sd ",")
+
+    if [ -z "$modules" ];
+    then
+        echo "No changes (modified / deleted / added)  found"
+    else
+        echo -e "Changed modules are : `echo $modules`\n\n"
+        /mnt/c/Windows/system32/cmd.exe /c mvn.cmd $1 -amd -pl $modules
+    fi
+}
+
 # Add bash settings specific to WSL (and not cygwin or some other bash environment)
 if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
 
