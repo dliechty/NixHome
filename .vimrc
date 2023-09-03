@@ -82,22 +82,6 @@ set autoread
 " set background to dark always
 set background=dark
 
-" Try to prevent bad habits like using the arrow keys for movement. This is
-" not the only possible bad habit. For example, holding down the h/j/k/l keys
-" for movement, rather than using more efficient movement commands, is also a
-" bad habit. The former is enforceable through a .vimrc, while we don't know
-" how to prevent the latter.
-" Do this in normal mode...
-nnoremap <Left>  <nop>
-nnoremap <Right> <nop>
-nnoremap <Up>    <nop>
-nnoremap <Down>  <nop>
-" ...and in insert mode
-inoremap <Left>  <nop>
-inoremap <Right> <nop>
-inoremap <Up>    <nop>
-inoremap <Down>  <nop>
-
 " In insert or command mode, move normally by using Ctrl
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>
