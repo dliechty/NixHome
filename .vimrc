@@ -122,11 +122,6 @@ set pastetoggle=<F3>
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
 
-" swap semi-colon and colon (in normal mode) so that you can type
-" colon with one keystroke
-nnoremap ; :
-nnoremap : ;
-
 " Show tab characters and trailing whitespace characters
 exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 set list
