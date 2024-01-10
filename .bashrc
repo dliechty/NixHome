@@ -157,6 +157,13 @@ sshaws() {
 # Include jumphost in scp command for aws resource
 alias scpaws='scp -J bastion.admin.nextgatecloud.com'
 
+# Powerline configuration
+if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
+    powerline-daemon -q
+    POWERLINE_BASH_CONTINUATION=1
+    POWERLINE_BASH_SELECT=1
+    source /usr/share/powerline/bindings/bash/powerline.sh
+fi
 
 # Run ls right after using cd
 cd() {
@@ -201,14 +208,6 @@ mvn_changed_modules() {
 # Add bash settings specific to WSL (and not cygwin or some other bash environment)
 if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
 
-    # Powerline configuration
-    if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
-        powerline-daemon -q
-        POWERLINE_BASH_CONTINUATION=1
-        POWERLINE_BASH_SELECT=1
-        source /usr/share/powerline/bindings/bash/powerline.sh
-    fi
-
     # alias mvn to the windows executable to use windows env variables and really slow
     # disk IO
     alias mvn='cmd.exe /c mvn.cmd'
@@ -216,6 +215,7 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     alias svn='svn.exe'
     # alias git to the exe
     alias git='git.exe'
+    alias gitwsl='/usr/bin/git'
 
     export TERM=xterm-256color
     alias tmux="tmux -2"
@@ -227,8 +227,9 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     fi
 
     update_hosts
+
+    # start tmux if it exists
+    start_tmux
 fi
 
-# start tmux if it exists
-start_tmux
-
+PATH="$HOME/.local/bin:$PATH"
