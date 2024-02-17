@@ -205,17 +205,21 @@ mvn_changed_modules() {
     fi
 }
 
+git() {
+  if [[ $(pwd -P) = /mnt/c/* ]]; 
+  then
+    git.exe "$@"
+  else
+    command git "$@"
+  fi
+}
+
 # Add bash settings specific to WSL (and not cygwin or some other bash environment)
 if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
 
     # alias mvn to the windows executable to use windows env variables and really slow
     # disk IO
     alias mvn='cmd.exe /c mvn.cmd'
-    # alias svn to the exe
-    alias svn='svn.exe'
-    # alias git to the exe
-    alias git='git.exe'
-    alias gitwsl='/usr/bin/git'
 
     export TERM=xterm-256color
     alias tmux="tmux -2"
