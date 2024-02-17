@@ -133,6 +133,8 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
+PATH="$HOME/.local/bin:$PATH"
+
 # User defined aliases
 
 alias sshs='ssh qwertyshoe.com'
@@ -236,4 +238,3 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     start_tmux
 fi
 
-PATH="$HOME/.local/bin:$PATH"
