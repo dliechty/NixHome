@@ -168,14 +168,9 @@ if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
 fi
 
 
-# Run ls right after using cd, and handle zoxide if it installed
+# Run ls right after using cd
 cd() {
-    if command -v zoxide &> /dev/null
-    then
-        z "$@" && ls -la
-    else
-        builtin cd "$@" && ls -al
-    fi
+    builtin cd "$@" && ls -al
 }
 
 
@@ -243,11 +238,4 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
 
     # start tmux if it exists
     start_tmux
-fi
-
-if command -v zoxide &> /dev/null
-then
-    alias cdi=zi
-
-    eval "$(zoxide init bash)"
 fi
