@@ -167,10 +167,17 @@ if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
     source /usr/share/powerline/bindings/bash/powerline.sh
 fi
 
-# Run ls right after using cd
+
+# Run ls right after using cd, and handle zoxide if it installed
 cd() {
-    builtin cd "$@" && ls -al
+    if command -v zoxide &> /dev/null
+    then
+        z "$@" && ls -la
+    else
+        builtin cd "$@" && ls -al
+    fi
 }
+
 
 update_hosts() {
     # Test if hosts file contains IP for windows host on first line. Can start with either
@@ -238,3 +245,9 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     start_tmux
 fi
 
+if command -v zoxide &> /dev/null
+then
+    alias cdi=zi
+
+    eval "$(zoxide init bash)"
+fi
