@@ -142,6 +142,13 @@ alias sshb='ssh bastion.admin.nextgatecloud.com'
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
+if command -v exa > /dev/null
+then
+    alias ls="exa"
+    alias ll="exa -alh"
+    alias tree="exa --tree"
+fi
+
 
 # Functions
 # #########
