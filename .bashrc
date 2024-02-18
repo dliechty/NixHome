@@ -254,4 +254,14 @@ fi
 if command -v zoxide > /dev/null 2>&1
 then
     eval "$(zoxide init --cmd cd bash)"
+
+    \builtin unalias cd &>/dev/null || \builtin true
+    function cd() {
+        __zoxide_z "$@" && ll
+    }
+
+    \builtin unalias cdi &>/dev/null || \builtin true
+    function cdi() {
+        __zoxide_zi "$@" && ll
+    }
 fi
