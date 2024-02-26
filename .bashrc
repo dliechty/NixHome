@@ -237,6 +237,12 @@ then
     complete -F _drunning dexec
 fi
 
+if command -v ~/nextgate/docker/install.sh > /dev/null 2>&1
+then
+    _dimages() { cur="${COMP_WORDS[COMP_CWORD]}"; __docker_complete_images --repo; }
+    complete -F _dimages install.sh
+fi
+
 # Add bash settings specific to WSL (and not cygwin or some other bash environment)
 if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
 
