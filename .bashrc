@@ -231,8 +231,10 @@ git() {
 if command -v docker > /dev/null 2>&1
 then
     function dbash() { docker exec -it "$1" bash; }
-    _dbash() { cur="${COMP_WORDS[COMP_CWORD]}"; __docker_complete_containers_running; }
-    complete -F _dbash dbash
+    function dexec() { docker exec -it "$@"; }
+    _drunning() { cur="${COMP_WORDS[COMP_CWORD]}"; __docker_complete_containers_running; }
+    complete -F _drunning dbash
+    complete -F _drunning dexec
 fi
 
 # Add bash settings specific to WSL (and not cygwin or some other bash environment)
