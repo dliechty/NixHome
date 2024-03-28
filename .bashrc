@@ -111,6 +111,7 @@ alias du='du -h'
 
 # Misc :)
 alias less='less -r'                          # raw control characters
+alias lessf='less -r --follow-name +F'        # follow by file name instead of file descriptor
 alias whence='type -a'                        # where, of a sort
 
 # Some shortcuts for different directory listings
