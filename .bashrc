@@ -267,6 +267,7 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/git/fzf-git.sh/fzf-git.sh ] && source ~/git/fzf-git.sh/fzf-git.sh
 
 if command -v zoxide > /dev/null 2>&1
 then
