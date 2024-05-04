@@ -143,11 +143,11 @@ alias sshb='ssh bastion.admin.nextgatecloud.com'
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-if command -v exa > /dev/null
+if command -v eza > /dev/null
 then
-    alias ls="exa"
-    alias ll="exa -alh"
-    alias tree="exa --tree"
+    alias ls="eza"
+    alias ll="eza -alh"
+    alias tree="eza --tree"
 fi
 
 if command -v bat > /dev/null
@@ -269,6 +269,13 @@ fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f ~/git/fzf-git.sh/fzf-git.sh ] && source ~/git/fzf-git.sh/fzf-git.sh
 
+# set up better fzf previews.
+show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else batcat -n --color=always --line-range :500 {}; fi"
+
+export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+
+# Enable zoxide if installed
 if command -v zoxide > /dev/null 2>&1
 then
     eval "$(zoxide init --cmd cd bash)"
