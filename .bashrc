@@ -145,9 +145,9 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 if command -v eza > /dev/null
 then
-    alias ls="eza"
-    alias ll="eza -alh"
-    alias tree="eza --tree"
+    alias ls="eza --long --icons=always --no-filesize --no-time --no-user --no-permissions"
+    alias ll="eza --all --long --header --icons=always"
+    alias tree="eza --tree --level=3"
 fi
 
 if command -v bat > /dev/null
