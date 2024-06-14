@@ -206,7 +206,7 @@ mvn_changed_modules() {
 git() {
   if [[ $(pwd -P) = /mnt/c/* ]]; 
   then
-    git.exe "$@"
+    "/mnt/c/Program Files/Git/cmd/git.exe" "$@"
   else
     command git "$@"
   fi
@@ -233,7 +233,7 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
 
     # alias mvn to the windows executable to use windows env variables and really slow
     # disk IO
-    alias mvn='cmd.exe /c mvn.cmd'
+    alias mvn='/mnt/c/Windows/system32/cmd.exe /c mvn.cmd'
 
     export TERM=xterm-256color
     alias tmux="tmux -2"
