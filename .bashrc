@@ -183,22 +183,6 @@ if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
     source /usr/share/powerline/bindings/bash/powerline.sh
 fi
 
-
-update_hosts() {
-    # Test if hosts file contains IP for windows host on first line. Can start with either
-    # 172. or 192.
-    (head -1 /etc/hosts | grep '172.\|192.' > /dev/null)
-    local out=$?
-    if [ "$out" -ne "0" ]; then
-        # Comment out the entry for 127.0.1.1 and add hostname as alias for localhost
-        sudo sed -i 's/127.0.1.1/#127.0.1.1/g' /etc/hosts
-        sudo sed -i "s/localhost$/localhost $(hostname)/g" /etc/hosts
-
-        # update with host IP address of windows box
-        echo -e "$(grep nameserver /etc/resolv.conf | awk '{print $2, " host"}')\n$(cat /etc/hosts)" | sudo tee /etc/hosts
-    fi
-}
-
 start_tmux() {
     if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
       tmux new-session -A -s main
@@ -259,8 +243,6 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
         # Start cron automatically to run any scheduled jobs
         sudo /etc/init.d/cron start
     fi
-
-    update_hosts
 
     # start tmux if it exists
     start_tmux
