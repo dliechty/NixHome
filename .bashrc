@@ -158,6 +158,8 @@ then
     alias cat="batcat"
 fi
 
+alias stmux='start_tmux'
+
 
 # Functions
 # #########
@@ -243,9 +245,6 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
         # Start cron automatically to run any scheduled jobs
         sudo /etc/init.d/cron start
     fi
-
-    # start tmux if it exists
-    start_tmux
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -264,11 +263,11 @@ then
 
     \builtin unalias cd &>/dev/null || \builtin true
     function cd() {
-        __zoxide_z "$@" && ll
+        __zoxide_z "$@" && ls -al
     }
 
     \builtin unalias cdi &>/dev/null || \builtin true
     function cdi() {
-        __zoxide_zi "$@" && ll
+        __zoxide_zi "$@" && ls -al
     }
 fi
