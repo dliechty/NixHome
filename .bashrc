@@ -122,7 +122,7 @@ alias ll='ls -al'                              # long list
 alias la='ls -A'                              # all but . and ..
 alias l='ls -CF'                              #
 
-export LESS="$LESS -R -Q"
+export LESS="-R -Q"
 
 # if .bash_local exist, source it.
 # .bash_local can be used to set machine-specific settings
