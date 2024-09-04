@@ -139,7 +139,6 @@ PATH="$HOME/.local/bin:$PATH"
 # User defined aliases
 
 alias sshs='ssh qwertyshoe.com'
-alias sshb='ssh bastion.admin.nextgatecloud.com'
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
@@ -166,16 +165,6 @@ alias stmux='start_tmux'
 
 # Some example functions
 # function settitle() { echo -ne "\e]2;$@\a\e]1;$@\a"; }
-
-# Function to update vimrc and then connect to aws server.
-# Auto completion provided by function in .bash_completion
-sshaws() {
-    uvimrc $1
-    ssha $1
-}
-
-# Include jumphost in scp command for aws resource
-alias scpaws='scp -J bastion.admin.nextgatecloud.com'
 
 # Powerline configuration
 if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
