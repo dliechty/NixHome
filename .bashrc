@@ -203,6 +203,16 @@ git() {
   fi
 }
 
+gh() {
+  if [[ $(pwd -P) = /mnt/c/* ]]; 
+  then
+    "/mnt/c/Program Files/GitHub CLI/gh.exe" "$@"
+  else
+    command gh "$@"
+  fi
+}
+
+
 # set up function dbash including tab completion to start a bash shell in a running docker image
 if command -v docker > /dev/null 2>&1
 then
