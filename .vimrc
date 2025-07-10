@@ -161,10 +161,8 @@ if index(validhosts, hostname()) >= 0
     " Avoid using standard Vim directory names like 'plugin'
     call plug#begin('~/.vim/plugged')
 
-    Plug 'git@github.com:kien/ctrlp.vim.git'
-    Plug 'git@github.com:Valloric/YouCompleteMe.git'
+    Plug 'Valloric/YouCompleteMe'
     Plug 'mbbill/undotree'
-    Plug 'git@github.com:yegappan/taglist'
     Plug 'mechatroner/rainbow_csv'
     Plug 'tmhedberg/matchit'
     Plug 'tomasr/molokai'
