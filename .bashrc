@@ -194,23 +194,6 @@ mvn_changed_modules() {
     fi
 }
 
-git() {
-  if [[ $(pwd -P) = /mnt/c/* ]]; 
-  then
-    "/mnt/c/Program Files/Git/cmd/git.exe" "$@"
-  else
-    command git "$@"
-  fi
-}
-
-gh() {
-  if [[ $(pwd -P) = /mnt/c/* ]]; 
-  then
-    "/mnt/c/Program Files/GitHub CLI/gh.exe" "$@"
-  else
-    command gh "$@"
-  fi
-}
 
 # Bash tab completion function that lists all running containers
 __docker_running_containers() {
@@ -245,17 +228,13 @@ then
 fi
 
 # Set up tab completion for docker install script
-if command -v ~/nextgate/docker/install.sh > /dev/null 2>&1
+if command -v ~/work/docker/install.sh > /dev/null 2>&1
 then
     complete -F __docker_images install.sh
 fi
 
 # Add bash settings specific to WSL (and not cygwin or some other bash environment)
 if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
-
-    # alias mvn to the windows executable to use windows env variables and really slow
-    # disk IO
-    alias mvn='/mnt/c/Windows/system32/cmd.exe /c mvn.cmd'
 
     export TERM=xterm-256color
     alias tmux="tmux -2"
@@ -291,3 +270,7 @@ then
         __zoxide_zi "$@" && ls -al
     }
 fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
