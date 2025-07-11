@@ -138,3 +138,4 @@ then
         __zoxide_zi "$@" && ls -al
     }
 fi
+
