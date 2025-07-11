@@ -94,20 +94,6 @@ start_tmux() {
     fi
 }
 
-mvn_changed_modules() {
-    [ -z "$1" ] && echo "Expected command : mvn_changed_modules (install/build/clean or any maven command)" && exit 0
-
-    modules=$(git status | grep -E "modified:|deleted:|added:" | awk '{print $2}' | cut -f1 -d "/" | sort | uniq | paste -sd ",")
-
-    if [ -z "$modules" ];
-    then
-        echo "No changes (modified / deleted / added)  found"
-    else
-        echo -e "Changed modules are : `echo $modules`\n\n"
-        /mnt/c/Windows/system32/cmd.exe /c mvn.cmd $1 -amd -pl $modules
-    fi
-}
-
 # set up function dbash including tab completion to start a bash shell in a running docker image
 if command -v docker > /dev/null 2>&1
 then
@@ -118,7 +104,7 @@ then
 fi
 
 # Set up tab completion for docker install script
-if command -v ~/nextgate/docker/install.sh > /dev/null 2>&1
+if command -v ~/work/docker/install.sh > /dev/null 2>&1
 then
     complete -F __docker_images install.sh
 fi
