@@ -11,6 +11,15 @@
 " `vim -u foo`).
 set nocompatible
 
+" WSL yank support
+let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
+if executable(s:clip)
+    augroup WSLYank
+        autocmd!
+        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+    augroup END
+endif
+
 " Turn on syntax highlighting.
 syntax on
 
@@ -131,20 +140,6 @@ let mapleader = " "
 
 "Remove all trailing whitespace in file by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
-
-" test if running inside WSL and apply WSL specific settings
-let uname = substitute(system('uname'),'\n','','')
-if uname == 'Linux'
-    let lines = readfile("/proc/version")
-    if lines[0] =~ "Microsoft"
-        " when yanking text copy to windows clipboard
-        autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' |  clip.exe')
-    endif
-endif
-
-if uname =~ 'CYGWIN.*'
-    set pythonthreedll=/usr/bin/libpython3.8.dll
-endif
 
 " check if .valid_hosts file exists. If it does, read in list of valid
 " hosts to initialize plugins and plugin-specific settings.
