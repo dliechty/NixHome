@@ -140,6 +140,8 @@ PATH="$HOME/.local/bin:$PATH"
 
 alias sshs='ssh qwertyshoe.com'
 
+alias mvndq='mvnd -P 'local,!include-ngms,!include-mmi,!include-regression,!include-restricted''
+
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 if command -v eza > /dev/null
