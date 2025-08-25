@@ -197,44 +197,6 @@ mvn_changed_modules() {
 }
 
 
-# Bash tab completion function that lists all running containers
-__docker_running_containers() {
-    local cur prev containers
-    cur="${COMP_WORDS[COMP_CWORD]}"
-    prev="${COMP_WORDS[COMP_CWORD-1]}"
-
-    containers=$(docker ps --format "{{.Names}}")
-
-    COMPREPLY=($(compgen -W "$containers" -- "$cur"))
-}
-
-# Bash tab completion function that lists all images
-__docker_images() {
-    local cur prev containers
-    cur="${COMP_WORDS[COMP_CWORD]}"
-    prev="${COMP_WORDS[COMP_CWORD-1]}"
-
-    images=$(docker images --format "{{.Repository}}:{{.Tag}}")
-
-    COMPREPLY=($(compgen -W "$images" -- "$cur"))
-}
-
-
-# set up function dbash including tab completion to start a bash shell in a running docker image
-if command -v docker > /dev/null 2>&1
-then
-    function dbash() { docker exec -it "$1" bash; }
-    function dexec() { docker exec -it "$@"; }
-    complete -F __docker_running_containers dbash
-    complete -F __docker_running_containers dexec
-fi
-
-# Set up tab completion for docker install script
-if command -v ~/work/docker/install.sh > /dev/null 2>&1
-then
-    complete -F __docker_images install.sh
-fi
-
 # Add bash settings specific to WSL (and not cygwin or some other bash environment)
 if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
 
