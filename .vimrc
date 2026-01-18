@@ -161,6 +161,7 @@ if index(validhosts, hostname()) >= 0
     Plug 'mechatroner/rainbow_csv'
     Plug 'tmhedberg/matchit'
     Plug 'tomasr/molokai'
+    Plug 'airblade/vim-gitgutter'
 
     " Initialize plugin system
     call plug#end()
