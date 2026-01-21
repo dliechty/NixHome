@@ -136,11 +136,23 @@ fi
 
 PATH="$HOME/.local/bin:$PATH"
 
+# Configure nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# Don't run anything after this line in a non-interactive shell (like codex or claude code)
+[[ $- != *i* ]] && return
+
 # User defined aliases
 
 alias sshs='ssh qwertyshoe.com'
 
-alias mvndq='mvnd -P 'local,!include-ngms,!include-mmi,!include-regression,!include-restricted''
+alias mvndf='mvnd -P simple,-include-ngms,-include-mmi,-include-regression,-include-restricted'
+
+# Delete all branches merged into the current branch except for main/master/dev
+alias git-clean='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs git branch -d'
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
@@ -164,9 +176,6 @@ alias stmux='start_tmux'
 
 # Functions
 # #########
-
-# Some example functions
-# function settitle() { echo -ne "\e]2;$@\a\e]1;$@\a"; }
 
 # Powerline configuration
 if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
@@ -238,3 +247,4 @@ fi
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
