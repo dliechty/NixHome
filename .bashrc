@@ -90,6 +90,14 @@ alias stmux='start_tmux'
 # Functions
 # #########
 
+# Powerline configuration
+if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
+    powerline-daemon -q
+    POWERLINE_BASH_CONTINUATION=1
+    POWERLINE_BASH_SELECT=1
+    source /usr/share/powerline/bindings/bash/powerline.sh
+fi
+
 start_tmux() {
     if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
       tmux new-session -A -s main
@@ -130,4 +138,3 @@ then
         __zoxide_zi "$@" && ls -al
     }
 fi
-
