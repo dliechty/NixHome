@@ -149,7 +149,7 @@ export NVM_DIR="$HOME/.nvm"
 
 alias sshs='ssh qwertyshoe.com'
 
-alias mvndf='mvnd -P simple,-include-ngms,-include-mmi,-include-regression,-include-restricted'
+alias mvndf='mvnd -P simple,-include-ngms,-include-mmi,-include-regression,-include-restricted,-tools'
 
 # Delete all branches merged into the current branch except for main/master/dev
 alias git-clean='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs git branch -d'
