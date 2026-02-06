@@ -109,7 +109,7 @@ set shiftwidth=4
 set expandtab
 " attempt to auto-indent
 set smartindent
-" don't line wrap
+" line wrap
 set wrap
 " don't create swap files
 set noswapfile
