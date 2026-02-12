@@ -104,7 +104,6 @@ start_tmux() {
     fi
 }
 
-
 # set up function dbash including tab completion to start a bash shell in a running docker image
 if command -v docker > /dev/null 2>&1
 then
