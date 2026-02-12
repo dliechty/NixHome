@@ -149,8 +149,6 @@ export NVM_DIR="$HOME/.nvm"
 
 alias sshs='ssh qwertyshoe.com'
 
-alias mvndf='mvnd -P simple,-include-ngms,-include-mmi,-include-regression,-include-restricted,-tools'
-
 # Delete all branches merged into the current branch except for main/master/dev
 alias git-clean='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs git branch -d'
 
@@ -191,34 +189,6 @@ start_tmux() {
     fi
 }
 
-mvn_changed_modules() {
-    [ -z "$1" ] && echo "Expected command : mvn_changed_modules (install/build/clean or any maven command)" && exit 0
-
-    modules=$(git status | grep -E "modified:|deleted:|added:" | awk '{print $2}' | cut -f1 -d "/" | sort | uniq | paste -sd ",")
-
-    if [ -z "$modules" ];
-    then
-        echo "No changes (modified / deleted / added)  found"
-    else
-        echo -e "Changed modules are : `echo $modules`\n\n"
-        /mnt/c/Windows/system32/cmd.exe /c mvn.cmd $1 -amd -pl $modules
-    fi
-}
-
-
-# Add bash settings specific to WSL (and not cygwin or some other bash environment)
-if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
-
-    export TERM=xterm-256color
-    alias tmux="tmux -2"
-
-    # Test to see if the cron service is already running
-    if ! service cron status > /dev/null; then
-        # Start cron automatically to run any scheduled jobs
-        sudo /etc/init.d/cron start
-    fi
-fi
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f ~/git/fzf-git.sh/fzf-git.sh ] && source ~/git/fzf-git.sh/fzf-git.sh
 
@@ -243,8 +213,3 @@ then
         __zoxide_zi "$@" && ls -al
     }
 fi
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
