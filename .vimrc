@@ -11,15 +11,6 @@
 " `vim -u foo`).
 set nocompatible
 
-" WSL yank support
-let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
-if executable(s:clip)
-    augroup WSLYank
-        autocmd!
-        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
-    augroup END
-endif
-
 " Turn on syntax highlighting.
 syntax on
 
@@ -156,7 +147,6 @@ if index(validhosts, hostname()) >= 0
     " Avoid using standard Vim directory names like 'plugin'
     call plug#begin('~/.vim/plugged')
 
-    Plug 'Valloric/YouCompleteMe'
     Plug 'mbbill/undotree'
     Plug 'mechatroner/rainbow_csv'
     Plug 'tmhedberg/matchit'
