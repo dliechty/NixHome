@@ -191,12 +191,3 @@ then
         __zoxide_zi "$@" && ls -al
     }
 fi
-
-# --- Antigravity / Chrome Bridge Setup ---
-# 1. Get Windows Gateway IP dynamically
-WIN_IP=$(ip route show | grep -i default | awk '{ print $3}')
-
-# 2. Start socat in background if not already running
-if ! pgrep -f "socat TCP-LISTEN:9222" > /dev/null; then
-    socat TCP-LISTEN:9222,fork,reuseaddr TCP:$WIN_IP:9222 &> /dev/null &
-fi
