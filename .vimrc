@@ -110,7 +110,7 @@ set expandtab
 " attempt to auto-indent
 set smartindent
 " don't line wrap
-set nowrap
+set wrap
 " don't create swap files
 set noswapfile
 
