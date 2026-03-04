@@ -11,6 +11,6 @@ Then, you must start a new subagent to verify that all tasks are complete, and t
 
 For any manual verification requiring the use of a browser, use playwright. Produce a report of findings for the parent agent.
 
-If issues are identified, create a subagent to fix them. Iterate on the validation --> fix cycle until all issues are addressed. Once all issues are addressed, finalize the phase.
+If issues are identified, create a subagent to fix them. Iterate on the validation --> fix cycle until all issues are addressed. Once all issues are addressed, finalize the phase by updating any task lists, decision logs, or plans maintained for this work track.
 
 Then, repeat for all remaining phases.
