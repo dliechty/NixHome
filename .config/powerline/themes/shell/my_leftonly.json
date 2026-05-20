@@ -7,7 +7,10 @@
 			},
 			{
 				"function": "powerline.segments.common.env.user",
-				"priority": 30
+				"priority": 30,
+                "args": {
+                    "hide_user": "david"
+                }
 			},
 			{
 				"function": "powerline.segments.common.env.virtualenv",
@@ -15,12 +18,26 @@
 			},
 			{
 				"function": "powerline.segments.shell.cwd",
-				"priority": 10
+				"priority": 10,
+                "args": {
+                    "dir_limit_depth": 2
+                }
 			},
+            {
+                "function": "powerline_gitstatus.gitstatus",
+                "priority": 40
+            },
             {
                 "function": "powerline.segments.shell.last_pipe_status",
                 "priority": 10
             }
 		]
-	}
+	},
+    "gitstatus": {
+        "args": {
+            "trusted_paths": [
+                "/home/david/work/git"
+            ]
+        }
+    }
 }
