@@ -24,14 +24,16 @@
                 }
 			},
             {
-                "function": "powerline_gitstatus.gitstatus",
-                "priority": 40
-            },
-            {
                 "function": "powerline.segments.shell.last_pipe_status",
                 "priority": 10
             }
-		]
+		],
+        "right": [
+            {
+                "function": "powerline_gitstatus.gitstatus",
+                "priority": 10
+            }
+        ]
 	},
     "gitstatus": {
         "args": {
