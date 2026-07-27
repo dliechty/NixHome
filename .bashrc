@@ -29,6 +29,8 @@ alias less='less -r'                          # raw control characters
 alias lessf='less -r --follow-name +F'        # follow by file name instead of file descriptor
 alias whence='type -a'                        # where, of a sort
 
+alias top=btop
+
 # Some shortcuts for different directory listings
 alias ls='ls -hF --color=tty'                 # classify files in colour
 alias dir='ls --color=auto --format=vertical'
