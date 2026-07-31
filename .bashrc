@@ -1,5 +1,10 @@
 # base-files version 3.9-3
 
+PATH="$HOME/.local/bin:$PATH"
+#
+# Don't run anything after this line in a non-interactive shell (like codex or claude code)
+[[ $- != *i* ]] && return
+
 # if .bash_local exist, source it.
 # .bash_local can be used to set machine-specific settings
 # that isn't synced to Git
@@ -10,7 +15,6 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-PATH="$HOME/.local/bin:$PATH"
 
 # Aliases
 # #######
@@ -46,9 +50,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
-# Don't run anything after this line in a non-interactive shell (like codex or claude code)
-[[ $- != *i* ]] && return
 
 # User defined aliases
 
