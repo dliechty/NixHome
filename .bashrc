@@ -140,6 +140,13 @@ show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head
 export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
+# Activate mise (must be before zoxide)
+if command -v mise >/dev/null 2>&1; then eval "$(mise activate bash)"; fi
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init bash)"; fi
+
+if command -v brew >/dev/null 2>&1; then eval "$(brew shellenv)"; fi
+
 # Enable zoxide if installed
 if command -v zoxide > /dev/null 2>&1
 then
@@ -159,4 +166,3 @@ fi
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
